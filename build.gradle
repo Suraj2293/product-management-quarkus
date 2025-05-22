@@ -1,0 +1,44 @@
+plugins {
+    id 'java'
+    id 'io.quarkus' version '3.8.2'
+}
+
+repositories {
+    mavenCentral()
+}
+
+
+dependencies {
+    implementation 'io.quarkus:quarkus-container-image-docker'
+    implementation enforcedPlatform("io.quarkus:quarkus-bom:3.8.2")
+    implementation 'io.quarkus:quarkus-resteasy-reactive'
+    implementation 'io.quarkus:quarkus-hibernate-reactive-panache'
+    implementation 'io.quarkus:quarkus-reactive-mysql-client'
+    implementation 'io.smallrye.reactive:mutiny'
+    implementation 'io.quarkus:quarkus-resteasy-reactive-jackson'
+    compileOnly 'org.projectlombok:lombok:1.18.30'
+    annotationProcessor 'org.projectlombok:lombok:1.18.30'
+
+
+    testImplementation 'io.quarkus:quarkus-junit5'
+    testImplementation 'io.rest-assured:rest-assured'
+    testImplementation 'io.quarkus:quarkus-junit5-mockito'
+    testImplementation 'org.assertj:assertj-core:3.25.1'
+//    testImplementation 'io.quarkus:quarkus-junit5-vertx'
+
+    implementation 'io.quarkus:quarkus-smallrye-openapi'
+
+
+}
+
+group = 'com.product'
+version = '1.0.0-SNAPSHOT'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release.set(17)
+}
